@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepCar.vin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">deepcar.vin</div>
+            <div class="language-selector">
+                <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
+                <button class="lang-btn" data-lang="ky">🇰🇬 Кыргызча</button>
+                <button class="lang-btn" data-lang="uz">🇺 Ўзбекча</button>
+                <button class="lang-btn" data-lang="kk">🇰🇿 Қазақша</button>
+            </div>
+        </header>
+        <main class="main">
+            <h1 class="title" id="title">Проверка истории автомобиля</h1>
+            <p class="subtitle" id="subtitle">Узнайте историю автомобиля по VIN номеру</p>
+            <div class="search-section">
+                <div class="input-wrapper">
+                    <input type="text" id="vinInput" class="vin-input" placeholder="Введите VIN/номер шасси" maxlength="17">
+                    <button class="camera-btn" id="cameraBtn">📷</button>
+                </div>
+                <button class="submit-btn" id="submitBtn">ПРОВЕРИТЬ</button>
+            </div>
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p id="loadingText">Проверка...</p>
+            </div>
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2 id="resultsTitle">Результаты</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="card-icon">🔧</div>
+                        <div class="card-label" id="odometerLabel">ОДОМЕТР</div>
+                        <div class="card-value" id="odometerValue">71,360</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="card-icon">💥</div>
+                        <div class="card-label" id="totalLossLabel">ПОТЕРЯ</div>
+                        <div class="card-value" id="totalLossValue">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="card-icon">🔨</div>
+                        <div class="card-label" id="junkLabel">УТИЛИЗАЦИЯ</div>
+                        <div class="card-value" id="junkValue">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="card-icon">📋</div>
+                        <div class="card-label" id="titlesLabel">ДОКУМЕНТЫ</div>
+                        <div class="card-value" id="titlesValue">1</div>
+                    </div>
+                
