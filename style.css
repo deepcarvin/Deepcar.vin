@@ -25,6 +25,7 @@ body {
     gap: 20px;
 }
 .logo { font-size: 28px; font-weight: 800; color: var(--primary); }
+.logo-img {height: 50px; width: auto;object-fit: contain;}
 .language-selector { display: flex; gap: 8px; flex-wrap: wrap; }
 .lang-btn {
     padding: 8px 12px;
