@@ -3,131 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepCar.vin</title>
+    <title>DeepCar.vin - Проверка истории автомобиля</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">deepcar.vin</div>
-            <div class="language-selector">
-                <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
-                <button class="lang-btn" data-lang="ky">🇰🇬 Кыргызча</button>
-                <button class="lang-btn" data-lang="uz">🇺🇿 Ўзбекча</button>
-                <button class="lang-btn" data-lang="kk">🇰🇿 Қазақша</button>
+    <header class="header">
+        <div class="logo">deepcar.vin</div>
+        <div class="language-selector">
+            <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-btn" data-lang="ky">🇰🇬 Кыргызча</button>
+            <button class="lang-btn" data-lang="uz">🇺🇿 Ўзбекча</button>
+            <button class="lang-btn" data-lang="kk">🇰🇿 Қазақша</button>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="hero">
+            <h1 id="title">Проверка истории автомобиля</h1>
+            <p id="subtitle">Узнайте полную историю по VIN номеру</p>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" id="vinInput" class="vin-input" placeholder="Введите VIN/номер шасси" maxlength="17">
+                <button class="camera-btn" id="cameraBtn">📷</button>
             </div>
-        </header>
+            <button class="search-btn" id="submitBtn">ПРОВЕРИТЬ</button>
+        </div>
 
-        <main class="main">
-            <div class="search-container">
-                <h1 class="title" id="title">Проверка истории автомобиля</h1>
-                <p class="subtitle" id="subtitle">Узнайте полную историю по VIN номеру</p>
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p id="loadingText">Проверка...</p>
+        </div>
 
-                <div class="search-section">
-                    <div class="input-wrapper">
-                        <input type="text" id="vinInput" class="vin-input" placeholder="Введите VIN/номер шасси" maxlength="17">
-                        <button class="camera-btn" id="cameraBtn">📷</button>
-                    </div>
-                    <button class="submit-btn" id="submitBtn">ПРОВЕРИТЬ</button>
+        <div class="results" id="results" style="display: none;">
+            <div class="result-grid">
+                <div class="card">
+                    <span class="icon">🔧</span>
+                    <p class="label">ОДОМЕТР</p>
+                    <p class="value" id="odometer">71,360</p>
+                </div>
+                <div class="card">
+                    <span class="icon">💥</span>
+                    <p class="label">АВАРИИ</p>
+                    <p class="value" id="accidents">0</p>
+                </div>
+                <div class="card">
+                    <span class="icon">⚠️</span>
+                    <p class="label">ПРОБЛЕМЫ</p>
+                    <p class="value" id="problems">0</p>
+                </div>
+                <div class="card">
+                    <span class="icon">💰</span>
+                    <p class="label">ПОТЕРЯ</p>
+                    <p class="value" id="totalLoss">НЕТ</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🔨</span>
+                    <p class="label">УТИЛИЗАЦИЯ</p>
+                    <p class="value" id="junk">НЕТ</p>
+                </div>
+                <div class="card">
+                    <span class="icon">📋</span>
+                    <p class="label">ДОКУМЕНТЫ</p>
+                    <p class="value" id="titles">1</p>
+                </div>
+                <div class="card">
+                    <span class="icon">📊</span>
+                    <p class="label">ПРОДАЖИ</p>
+                    <p class="value" id="sales">2</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🔔</span>
+                    <p class="label">ОТЗЫВЫ</p>
+                    <p class="value" id="recalls">0</p>
                 </div>
             </div>
+        </div>
 
-            <div class="loading" id="loading" style="display: none;">
-                <div class="spinner"></div>
-                <p id="loadingText">Проверка...</p>
-            </div>
+        <div class="error" id="error" style="display: none;">
+            <p id="errorText">Введите корректный VIN (17 символов)</p>
+        </div>
+    </main>
 
-            <div class="results-container" id="resultsContainer" style="display: none;">
-                <div class="vehicle-header">
-                    <div class="vehicle-image">
-                        <img id="vehicleImg" src="https://via.placeholder.com/300x200?text=Vehicle" alt="Vehicle">
-                    </div>
-                    <div class="vehicle-info">
-                        <div class="vin-display">
-                            <span class="vin-label" id="vinLabel">VIN:</span>
-                            <span class="vin-value" id="vinValue">KNAP6815GJK504750</span>
-                        </div>
-                        <div class="model-display">
-                            <span class="model-label" id="modelLabel">Модель:</span>
-                            <span class="model-value" id="modelValue">Hyundai Solaris</span>
-                        </div>
-                        <div class="year-display">
-                            <span class="year-label" id="yearLabel">Год:</span>
-                            <span class="year-value" id="yearValue">2018</span>
-                        </div>
-                        <div class="export-display">
-                            <span class="export-label" id="exportLabel">Экспорт:</span>
-                            <span class="export-value" id="exportValue">2023</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="card-icon">🔧</div>
-                        <div class="card-label" id="odometerLabel">ОДОМЕТР</div>
-                        <div class="card-value" id="odometerValue">71,360</div>
-                        <div class="card-unit">км</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">💥</div>
-                        <div class="card-label" id="accidentsLabel">АВАРИИ</div>
-                        <div class="card-value" id="accidentsValue">0</div>
-                        <div class="card-unit">записей</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">⚠️</div>
-                        <div class="card-label" id="problemLabel">ПРОБЛЕМЫ</div>
-                        <div class="card-value" id="problemValue">0</div>
-                        <div class="card-unit">найдено</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">💰</div>
-                        <div class="card-label" id="totalLossLabel">ПОЛНАЯ ПОТЕРЯ</div>
-                        <div class="card-value" id="totalLossValue">НЕТ</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">🔨</div>
-                        <div class="card-label" id="junkLabel">УТИЛИЗАЦИЯ</div>
-                        <div class="card-value" id="junkValue">НЕТ</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">📋</div>
-                        <div class="card-label" id="titlesLabel">ДОКУМЕНТЫ</div>
-                        <div class="card-value" id="titlesValue">1</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">📊</div>
-                        <div class="card-label" id="salesLabel">ПРОДАЖИ</div>
-                        <div class="card-value" id="salesValue">2</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="card-icon">🔔</div>
-                        <div class="card-label" id="recallsLabel">ОТЗЫВЫ</div>
-                        <div class="card-value" id="recallsValue">0</div>
-                    </div>
-                </div>
-
-                <div class="problems-section">
-                    <h3 id="problemsTitle">Обнаруженные проблемы:</h3>
-                    <div class="problems-list" id="problemsList">
-                        <div class="problem-item">
-                            <span class="problem-status">✓</span>
-                            <span class="problem-text">Нет проблем обнаружено</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="error-message" id="errorMessage" style="display: none;">
-                <p id="errorText">Пожалуйста, введите корректный VIN (17 символов).</p>
-            </div>
-        </main>
-
-        <footer class="footer">
-            <p>&copy; 2024 DeepCar.vin - Все права защищены</p>
-        </footer>
-    </div>
+    <footer class="footer">
+        <p>&copy; 2024 DeepCar.vin</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
